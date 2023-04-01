@@ -1,0 +1,5 @@
+# Ignore everything in the scripts folder
+scripts/*
+
+# But do not ignore files starting with an underscore (_)
+!scripts/_*

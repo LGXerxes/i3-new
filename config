@@ -598,6 +598,8 @@ bindsym $mod+period exec --no-startup-id rofi -show emoji -modi emoji -config ~/
 #auto start applications
 exec_always --no-startup-id flameshot --hidden
 exec_always --no-startup-id ~/.cargo/bin/i3-back
+exec --no-startup-id rclone mount gdrive: ~/google-drive --daemon
+
 
 # https://github.com/Cretezy/i3-back
 bindsym Mod1+Tab [con_mark=_back] focus
@@ -611,3 +613,8 @@ bindsym Mod1+Tab [con_mark=_back] focus
 # https://github.com/moqmar/i3-alt-tab
 #bindsym Mod1+Tab exec i3-alt-tab --next
 #bindsym Mod1+Shift+Tab exec i3-alt-tab --prev
+
+# bind for extracting the text of the first clipboard entry image
+# sudo pacman -S tesseract tesseract-data-eng xclip imagemagick
+bindsym $mod+Shift+x exec ~/.config/i3/scripts/clipboard_ocr.sh
+

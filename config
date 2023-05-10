@@ -618,3 +618,6 @@ bindsym Mod1+Tab [con_mark=_back] focus
 # sudo pacman -S tesseract tesseract-data-eng xclip imagemagick
 bindsym $mod+Shift+x exec ~/.config/i3/scripts/clipboard_ocr.sh
 
+# yay autorandr
+# create setups with arandr
+bindsym $mod+Shift+s exec --no-startup-id autorandr --change 

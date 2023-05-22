@@ -1,7 +1,5 @@
 Installs the acpid to make laptop screen work nicely when opening and closing laptop.
 
-
-
 sudo pacman -S acpid
 
 sudo systemctl enable acpid.service
@@ -16,12 +14,14 @@ echo $XAUTHORITY
 code /etc/acpi/handler.sh
 
 ```
-#!/bin/bash
+#!/bin/bash
+logger 'ACPI handler script started'
 # Default acpi script that takes an entry for all actions
 
-# Add the following lines to set the necessary environment variables
+# Set environment variables
 export DISPLAY=:0
 export XAUTHORITY=/home/lgx/.Xauthority
+
 
 case "$1" in
     button/power)
@@ -90,7 +90,12 @@ case "$1" in
                 ;;
             open)
                 logger 'LID opened'
-                xrandr --output eDP1 --auto --left-of DP1
+                ext_monitors=$(xrandr --query | grep ' connected' | grep -v 'eDP')
+                if [ -n "$ext_monitors" ]; then
+                    xrandr --output eDP1 --auto --left-of DP1
+                else
+                    xrandr --output eDP1 --auto
+                fi
                 ;;
             *)
                 logger "ACPI action undefined: $3"

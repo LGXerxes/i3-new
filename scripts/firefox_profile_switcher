@@ -1,0 +1,34 @@
+#!/bin/bash
+
+# Define the paths to the profiles
+WORK_PROFILE="9hi1vizk.default-release"
+HOME_PROFILE="uovn98gd.default"
+
+# Get the current default profile from profiles.ini
+CURRENT_PROFILE=$(grep -m 1 'Default=' ~/.mozilla/firefox/profiles.ini | cut -d"=" -f2  )
+if [ "$CURRENT_PROFILE" = "$WORK_PROFILE" ]
+then
+    # If the current profile is work, switch to home
+    sed -i "s|Default=$WORK_PROFILE|Default=$HOME_PROFILE|" ~/.mozilla/firefox/profiles.ini
+    notify-send "Firefox Profile Switch" "Switched to Home Profile"
+elif [ "$CURRENT_PROFILE" = "$HOME_PROFILE" ]
+then
+    # If the current profile is home, switch to work
+    sed -i "s|Default=$HOME_PROFILE|Default=$WORK_PROFILE|" ~/.mozilla/firefox/profiles.ini
+    notify-send "Firefox Profile Switch" "Switched to Work Profile"
+else
+    # If the current profile is neither work nor home, print an error message
+    echo "Error: Current profile is neither work nor home."
+    exit 1
+fi
+
+# NECESSARY AS FIREFOX WON'T OPEN NEW PROFILE UNLESS YOU QUIT FIREFOX
+
+# Close all running Firefox instances
+killall firefox
+
+# Give it some time
+sleep 2
+
+# Start Firefox with the new default profile
+firefox &

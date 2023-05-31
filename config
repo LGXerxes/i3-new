@@ -286,6 +286,7 @@ bindsym $mod+w exec /usr/bin/firefox
 bindsym $mod+n exec /usr/bin/thunar
 #bindsym Print exec scrot ~/%Y-%m-%d-%T-screenshot.png && notify-send "Screenshot saved to ~/$(date +"%Y-%m-%d-%T")-screenshot.png"
 bindsym Print exec flameshot gui
+bindsym $mod+Print exec flameshot gui -d 2000
 
 # Power Profiles menu switcher (rofi)
 bindsym $mod+Shift+p exec ~/.config/i3/scripts/power-profiles
@@ -625,3 +626,4 @@ bindsym $mod+Shift+s exec --no-startup-id autorandr --change
 # change the firefox default profile
 # WILL RESTART FIREFOX
 bindsym $mod+Shift+f exec --no-startup-id ~/.config/i3/scripts/firefox_profile_switcher
+

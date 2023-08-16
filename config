@@ -286,7 +286,7 @@ bindsym $mod+w exec /usr/bin/firefox
 bindsym $mod+n exec /usr/bin/thunar
 #bindsym Print exec scrot ~/%Y-%m-%d-%T-screenshot.png && notify-send "Screenshot saved to ~/$(date +"%Y-%m-%d-%T")-screenshot.png"
 bindsym Print exec flameshot gui
-bindsym $mod+Print exec flameshot gui -d 2000
+bindsym $alt+Print exec flameshot gui -d 2000
 
 # Power Profiles menu switcher (rofi)
 bindsym $mod+Shift+p exec ~/.config/i3/scripts/power-profiles
@@ -593,14 +593,14 @@ bindsym $mod+c exec --no-startup-id rofi -modi "clipboard:greenclip print" -show
 bindsym $mod+v exec --no-startup-id rofi -modi "paste:/home/lgx/.config/i3/scripts/paste-modi.sh" -show paste\
 		-config ~/.config/rofi/rofidmenu.rasi
 		
-# https://github.com/Mange/rofi-emoji
+# https://github.com/Mange/rofi-emojiq
 bindsym $mod+period exec --no-startup-id rofi -show emoji -modi emoji -config ~/.config/rofi/rofiemoji.rasi
 
 #auto start applications
 exec_always --no-startup-id flameshot --hidden
 exec_always --no-startup-id ~/.cargo/bin/i3-back
 exec --no-startup-id rclone mount gdrive: ~/google-drive --daemon
-
+exec_always --no-startup-id solaar --window=hide
 
 # https://github.com/Cretezy/i3-back
 bindsym Mod1+Tab [con_mark=_back] focus
@@ -626,4 +626,5 @@ bindsym $mod+Shift+s exec --no-startup-id autorandr --change
 # change the firefox default profile
 # WILL RESTART FIREFOX
 bindsym $mod+Shift+f exec --no-startup-id ~/.config/i3/scripts/firefox_profile_switcher
+
 

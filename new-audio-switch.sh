@@ -23,5 +23,8 @@ next_sink_name=${sink_names[$next_index]}
 pactl set-default-sink $next_sink_name
 pactl list short sink-inputs | awk '{print $1}' | xargs -r -I {} pactl move-sink-input {} $next_sink_name
 
+# Notify the user
+notify-send "Audio Switcher" "Switched to sink: $next_sink_name"
+
 # Print info
 echo "Switched to sink: $next_sink_name"
